@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -44,6 +45,7 @@ fun HomeScreen(
     viewModel: NoteViewModel = viewModel ()
 ) {
         Scaffold(
+            topBar = { Text(text = "Notes App",modifier=modifier.padding(top = 32.dp),)},
             floatingActionButtonPosition = FabPosition.Center,
             floatingActionButton = {
                 FloatingActionButton(
@@ -96,18 +98,21 @@ fun NoteListItem(note: Note, modifier: Modifier = Modifier, onNavigate: () -> Un
             textAlign = TextAlign.Justify,
             modifier = modifier
 
-                .defaultMinSize(minHeight = 80.dp)
+                .defaultMinSize(minHeight = 40.dp)
                 .wrapContentHeight(Alignment.CenterVertically)
         )
         Spacer(modifier = modifier.fillMaxWidth() )
         Text(
             text = note.details,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
             fontSize = 20.sp,
             color = Color.DarkGray,
             textAlign = TextAlign.Justify,
             modifier = modifier
+
                 .padding(8.dp)
-                .defaultMinSize(minHeight = 80.dp)
+                .defaultMinSize(minHeight = 20.dp)
                 .wrapContentHeight(Alignment.CenterVertically)
         )
     }
